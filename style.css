@@ -1,0 +1,24 @@
+/**************************/
+/* START GENERAL RULES */
+/**************************/
+
+/* JetBrains Mono Font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+}
+/**************************/
+/* END GENERAL RULES */
+/**************************/
+
