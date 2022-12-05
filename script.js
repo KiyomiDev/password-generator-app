@@ -6,6 +6,7 @@ const passwordLengthEl = document.querySelector('.password-length');
 let passwordLength = minLength;
 // Get all css properties and values of the document and then get the value of that specific property "main-color"
 const mainColor = getComputedStyle(document.documentElement).getPropertyValue('--main-color');
+const lengthErrMsg = document.querySelector('.length-err-msg');
 
 // Make the range interactive
 lengthInput.addEventListener('input', () => {
@@ -15,5 +16,11 @@ lengthInput.addEventListener('input', () => {
     lengthInput.style.background = `linear-gradient(90deg, ${mainColor} ${colorStop}, rgba(58,57,64,1) ${colorStop})`;
     passwordLength = lengthInput.value;
     passwordLengthEl.textContent = passwordLength;
+    lengthErrMsg.classList.add('hidden');
+  }
+  // Display error message If password length less than 6 characters 
+  else {
+    lengthInput.value = minLength;
+    lengthErrMsg.classList.remove('hidden');
   }
 })
