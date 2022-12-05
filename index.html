@@ -5,9 +5,82 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
   <title>Password generator app</title>
 </head>
 <body>
+  <div class="container">
+    <h2 class="primary-heading">password generator</h2>
+    <div class="app">
+      <div class="generated">
+        <h3 class="heading">generated password</h3>
+        <div class="password wrapper">
+          <input type="text" class="password-text" placeholder="%qGp!0s" disabled></input>
+          <div class="copy">
+            <p class="copied text-hide">copied!</p>
+            <ion-icon class="copy-btn" name="copy-outline"></ion-icon>
+          </div>
+        </div>
+      </div>
+      <div class="length">
+        <label for="length-input" class="length-label heading">length</label>
+        <div class="wrapper">
+          <input type="range" class="length-input" id="length-input" min="0" max="30" value="6">
+          <span class="password-length">6</span>
+        </div>
+        <p class="length-err-msg err-msg hidden"><ion-icon name="close-outline" class="err-icon"></ion-icon> Password length must be at least 6 characters</p>
+      </div>
+      <div class="settings">
+        <h3 class="heading">settings</h3>
+        <div class="option wrapper">
+          <p>include uppercase letters</p>
+          <label class="switch">
+            <input type="checkbox" class="uppercase">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="option wrapper">
+          <p>include lowercase letters</p>
+          <label class="switch">
+            <input type="checkbox" class="lowercase" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="option wrapper">
+          <p>include numbers</p>
+          <label class="switch">
+            <input type="checkbox" class="numbers" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="option wrapper">
+          <p>include symbols</p>
+          <label class="switch">
+            <input type="checkbox" class="symbols">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <p class="settings-err-msg err-msg hidden"><ion-icon name="close-outline" class="err-icon"></ion-icon> Select at least 1 setting</p>
+      </div>
+      <div class="password-strength">
+        <p>strength</p>
+        <div class="strength">
+          <span class="message"></span>
+          <div class="bars">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+        </div>
+      </div>
+      <button class="generate-btn">
+        <span>generate</span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
