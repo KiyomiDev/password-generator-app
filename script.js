@@ -10,6 +10,7 @@ const lengthErrMsg = document.querySelector('.length-err-msg');
 const generateBtn = document.querySelector('.generate-btn');
 const passwordText = document.querySelector('.password-text');
 const checkBoxes = document.querySelectorAll('input[type="checkbox"]');
+const settingsErrMsg = document.querySelector('.settings-err-msg');
 
 
 // Make the range interactive
@@ -53,5 +54,8 @@ generateBtn.addEventListener('click', () => {
       randomPassword += SETTINGS[randomSetting][Math.floor(Math.random() * SETTINGS[randomSetting].length)];
     }
     passwordText.value = randomPassword;
+    settingsErrMsg.classList.add('hidden');
+  } else {
+    settingsErrMsg.classList.remove('hidden');
   }
 })
