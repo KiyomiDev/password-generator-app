@@ -14,6 +14,9 @@ const settingsErrMsg = document.querySelector('.settings-err-msg');
 const strengthMsg = document.querySelector('.strength .message');
 const strengthBars = document.querySelectorAll('.bars .bar');
 let barsLength = 0;
+const copyPassword = document.querySelector('.copy-btn');
+const copied = document.querySelector('.copied');
+
 
 // Make the range interactive
 lengthInput.addEventListener('input', () => {
@@ -57,6 +60,7 @@ generateBtn.addEventListener('click', () => {
     }
     passwordText.value = randomPassword;
     settingsErrMsg.classList.add('hidden');
+    copyPassword.innerHTML = '<ion-icon class="copy-btn" name="copy-outline"></ion-icon>';
   } else {
     settingsErrMsg.classList.remove('hidden');
   }
@@ -102,3 +106,19 @@ function changeBarsColor(color) {
    `
   }
 }
+
+// Copy the password
+copyPassword.addEventListener('click', () => {
+  if (passwordText.value) {
+    passwordText.select()
+    navigator.clipboard.writeText(passwordText.value);
+    // Show "copied" text and hide copy button
+    copied.classList.remove('text-hide');
+    copyPassword.classList.add('hidden');
+    // Hide "copied" text after 3 seconds and show copy button
+    setTimeout(() => {
+      copied.classList.add('text-hide');
+      copyPassword.classList.remove('hidden');
+    }, 3000);
+  }
+})
