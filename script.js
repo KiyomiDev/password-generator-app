@@ -3,7 +3,7 @@ const lengthInput = document.querySelector('.length-input');
 const maxLength = lengthInput.getAttribute('max');
 const minLength = 6;
 const passwordLengthEl = document.querySelector('.password-length');
-let passwordLength = minLength;
+let passwordLength = localStorage.getItem('password-length') || minLength;
 // Get all css properties and values of the document and then get the value of that specific property "main-color"
 const mainColor = getComputedStyle(document.documentElement).getPropertyValue('--main-color');
 const lengthErrMsg = document.querySelector('.length-err-msg');
@@ -23,7 +23,9 @@ lengthInput.addEventListener('input', () => {
   const inputValue = lengthInput.value;
   if (inputValue >= minLength) {
     let colorStop = `${(inputValue / maxLength) * 100}%`;
-    lengthInput.style.background = `linear-gradient(90deg, ${mainColor} ${colorStop}, rgba(58,57,64,1) ${colorStop})`;
+    const color = `linear-gradient(90deg, ${mainColor} ${colorStop}, rgba(58,57,64,1) ${colorStop})`;
+    lengthInput.style.background = color;
+    localStorage.setItem('color', color);
     passwordLength = lengthInput.value;
     passwordLengthEl.textContent = passwordLength;
     lengthErrMsg.classList.add('hidden');
@@ -66,6 +68,7 @@ generateBtn.addEventListener('click', () => {
   }
   passwordStrength()
   saveSelections()
+  saveLength()
 })
 
 // Strength meter
@@ -146,3 +149,20 @@ function selectUserSelections() {
 }
 
 if (savedIndexes) selectUserSelections();
+
+function saveLength() {
+  localStorage.setItem('password-length', lengthInput.value);
+}
+
+function displayPassLength() {
+  const savedPassLength = localStorage.getItem('password-length');
+  const savedColor = localStorage.getItem('color');
+
+  if (savedPassLength) {
+    lengthInput.value = savedPassLength;
+    passwordLengthEl.innerText = savedPassLength;
+    lengthInput.style.background = savedColor;
+  }
+}
+
+displayPassLength();
