@@ -65,6 +65,7 @@ generateBtn.addEventListener('click', () => {
     settingsErrMsg.classList.remove('hidden');
   }
   passwordStrength()
+  saveSelections()
 })
 
 // Strength meter
@@ -122,3 +123,26 @@ copyPassword.addEventListener('click', () => {
     }, 3000);
   }
 })
+
+function saveSelections() {
+  const indexesOfSelectedBoxes = [];
+  checkBoxes.forEach((checkBox, index) => {
+    if (checkBox.checked) indexesOfSelectedBoxes.push(index);
+  })
+  localStorage.setItem('indexes-of-selected-boxes', indexesOfSelectedBoxes);
+}
+
+const savedIndexes = localStorage.getItem('indexes-of-selected-boxes');
+
+function selectUserSelections() {
+  const selectedBoxesArr = savedIndexes.split(',');
+
+  checkBoxes.forEach(checkBox => checkBox.checked = false);
+
+  selectedBoxesArr.forEach(checkBoxIndex => {
+    const checkBoxEl = checkBoxes[checkBoxIndex];
+    checkBoxEl.checked = true;
+  })
+}
+
+if (savedIndexes) selectUserSelections();
